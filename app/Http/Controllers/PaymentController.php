@@ -12,6 +12,6 @@ class PaymentController extends Controller
     private Auth $auth;
     public function index()
     {
-        return view('payment.index');
+        return view('client.payment');
     }
 }

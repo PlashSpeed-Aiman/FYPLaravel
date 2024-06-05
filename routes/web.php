@@ -37,6 +37,7 @@ Route::group(['prefix'=>'client','middleware'=>[\Spatie\Permission\Middleware\Ro
     Route::get('/settings/change-password', function () {
         return view('client.change_password');
     });
+    Route::get('/payments', [App\Http\Controllers\PaymentController::class, 'index'])->name('client.payments');
 });
 
 Route::get('/dashboard',function() {
@@ -53,6 +54,8 @@ Route::get('/dashboard',function() {
 
     return redirect('/');
 });
+
+
 
 Route::get('/seed_user', function () {
     $user = new App\Models\User();

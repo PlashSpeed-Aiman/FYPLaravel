@@ -35,13 +35,13 @@ class AdminController extends Controller
     }
     public function approveAppointment($id){
         $appointment = Appointment::find($id);
-        $appointment->appointment_status = 'approved';
+        $appointment->appointment_status = 'Approved';
         $appointment->save();
         return redirect()->back();
     }
     public function declineAppointment($id){
         $appointment = Appointment::find($id);
-        $appointment->appointment_status = 'declined';
+        $appointment->appointment_status = 'Declined';
         $appointment->save();
         return redirect()->back();
     }
