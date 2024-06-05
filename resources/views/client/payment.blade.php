@@ -4,7 +4,7 @@
         @include('client.navbar')
         <div class="w-full min-h-screen flex flex-col font-['Poppins']">
             <div class="flex justify-end">
-                {{--    Profile Pic, might put dropdown for logout    --}}        --}}
+                {{--    Profile Pic, might put dropdown for logout    --}}
                 @include('client.user_dropdown')
             </div>
 {{-- PAGE CONTENT--}}
@@ -19,9 +19,28 @@
                             <th>Date</th>
                             <th>Amount</th>
                             <th>Action</th>
+                            <th>Status</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($invoices as $invoice)
+                            <tr>
+                                <td>{{ $invoice->id }}</td>
+                                <td>{{ $invoice->invoice_date }}</td>
+                                <td>{{ $invoice->amount }}</td>
+                                <td>
+{{--                                    <a href="{{ route('invoice.show', $invoice->id) }}" class="btn btn-primary">View</a>--}}
+                                </td>
+                                <td>
+                                    @if($invoice->status == 'paid')
+                                        <span class="text-green
+                                        font-bold">{{ $invoice->status }}</span>
+                                    @else
+                                        <span class="text-red
+                                        font-bold">{{ $invoice->status }}</span>
+                                    @endif
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

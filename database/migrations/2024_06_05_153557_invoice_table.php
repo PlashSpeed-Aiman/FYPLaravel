@@ -11,7 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        // Create the invoice table
+        Schema::create('invoices', function (Blueprint $table) {
+            $table->id();
+            $table->string('client_id')->nullable();
+            $table->string('invoice_number')->unique();
+            $table->date('invoice_date');
+            $table->decimal('amount', 10, 2);
+            $table->string('status');
+            $table->timestamps();
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('no action');
+
+        });
     }
 
     /**
@@ -20,5 +31,6 @@ return new class extends Migration
     public function down(): void
     {
         //
+        Schema::dropIfExists('invoices');
     }
 };
