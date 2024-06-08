@@ -26,6 +26,8 @@ Route::group(['prefix'=>'admin','middleware'=>[\Spatie\Permission\Middleware\Rol
     Route::get('/appointments', [App\Http\Controllers\AdminController::class, 'appointments'])->name('admin.appointments');
     Route::get('/appointments/{id}/approve', [App\Http\Controllers\AdminController::class, 'approveAppointment'])->name('admin.appointments.approve');
     Route::get('/appointments/{id}/decline', [App\Http\Controllers\AdminController::class, 'declineAppointment'])->name('admin.appointments.decline');
+    Route::get('/payments', [App\Http\Controllers\AdminController::class, 'payments'])->name('admin.payments');
+
 });
 Route::group(['prefix'=>'client','middleware'=>[\Spatie\Permission\Middleware\RoleMiddleware::using('client')]], function(){
     Route::get('/dashboard', [App\Http\Controllers\ClientController::class, 'index'])->name('client.dashboard');
@@ -37,7 +39,7 @@ Route::group(['prefix'=>'client','middleware'=>[\Spatie\Permission\Middleware\Ro
     Route::get('/settings/change-password', function () {
         return view('client.change_password');
     });
-    Route::get('/payments', [App\Http\Controllers\ClientPaymentController::class, 'index'])->name('client.payments');
+    Route::get('/payments', [App\Http\Controllers\ClientController::class, 'index'])->name('client.payments');
 });
 
 Route::get('/dashboard',function() {

@@ -19,6 +19,7 @@
                         <th>Date</th>
                         <th>Time</th>
                         <th>Reason</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -30,6 +31,7 @@
                         <td>{{ $appointment->date }}</td>
                         <td>{{ $appointment->time }}</td>
                         <td>{{ $appointment->reason }}</td>
+                        <td>{{ $appointment->appointment_status }}</td>
                         <td class="flex">
                             <a href="{{url('admin/appointments/1/approve')}}" class="border mx-0.5 rounded transition-colors hover:bg-green-400" ><svg class="h-12 w-12" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-labelledby="calendarAddIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="calendarAddIconTitle">Approve</title> <path d="M3 5H21V21H3V5Z"></path> <path d="M21 9H3"></path> <path d="M7 5V3"></path> <path d="M17 5V3"></path> <path d="M15 15H9"></path> <path d="M12 12V18"></path> </g></svg></a>
                             <a href="{{url('admin/appointments/1/decline')}}" class="border mx-0.5 rounded transition-colors hover:bg-red-400"><svg class="h-12 w-12" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-labelledby="calendarDeclineIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="calendarDeclineIconTitle">Decline</title> <path d="M3 5H21V21H3V5Z"></path> <path d="M21 9H3"></path> <path d="M7 5V3"></path> <path d="M17 5V3"></path> <path d="M15 18L8.99999 12"></path> <path d="M15 12L9 18"></path> </g></svg></a>

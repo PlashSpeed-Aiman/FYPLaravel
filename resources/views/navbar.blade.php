@@ -53,7 +53,7 @@
                 </svg>
                 Appointments
             </a></li>
-        <li><a class=" w-full flex gap-2 hover:text-blue-600   " href="">
+        <li><a class=" w-full flex gap-2 hover:text-blue-600   " href="{{route('admin.payments')}}">
                 <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
