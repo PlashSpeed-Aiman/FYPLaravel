@@ -11,6 +11,12 @@ Route::group(['middleware'=>'web','prefix' => 'v1'], function () {
         Route::get('/test', [App\Http\Controllers\API\AppointmentController::class, 'store']);
         Route::get('/', [App\Http\Controllers\API\ClientController::class, 'index']);
     });
+    // lawyer upload document
+    // group into lawyers
+    Route::group(['prefix'=>'lawyers'], function(){
+        Route::post('/documents', [App\Http\Controllers\API\LawyerController::class, 'uploadDocument'])->name('lawyer.document.upload');
+
+    });
 
 });
 

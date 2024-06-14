@@ -26,4 +26,9 @@ class Cases extends Model
     {
         return $this->hasMany(LawyerCase::class);
     }
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
 }

@@ -48,11 +48,11 @@ Route::group(['prefix'=>'lawyer','middleware'=>[\Spatie\Permission\Middleware\Ro
         Route::get('/{id}', [App\Http\Controllers\LawyerController::class, 'client'])->name('lawyer.client');
         Route::get('/{id}/cases/{case_id}', [App\Http\Controllers\LawyerController::class, 'case'])->name('lawyer.client.case');
     });
-   Route::get('/appointments', [App\Http\Controllers\LawyerController::class, 'appointments'])->name('lawyer.appointments');
    Route::get('/settings', [App\Http\Controllers\LawyerController::class, 'settings'])->name('lawyer.settings');
    Route::get('/settings/change-password', function () {
         return view('lawyer.change_password');
     });
+    Route::get('/documents/{document_id}', [App\Http\Controllers\LawyerController::class, 'downloadDocument'])->name('lawyer.documents.download');
     Route::get('/payments', [App\Http\Controllers\LawyerController::class, 'index'])->name('lawyer.payments');
 });
 

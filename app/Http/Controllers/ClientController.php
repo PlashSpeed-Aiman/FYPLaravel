@@ -22,7 +22,8 @@ class ClientController extends Controller
     }
 
     public function case($id){
-        return view('client.case.index', ['id' => $id]);
+        $case = Cases::find($id);
+        return view('client.case.index', ['id' => $id, 'case' => $case]);
     }
 
     public function appointments(){
