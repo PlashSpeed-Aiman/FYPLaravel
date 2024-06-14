@@ -4,8 +4,7 @@
         @include('client.case.navbar',['id' => $case->id])
         <div class="w-full min-h-screen flex flex-col font-['Poppins']">
             <div class="flex justify-end">
-                {{--    Profile Pic, might put dropdown for logout            --}}
-                @include('client.user_dropdown')
+                @include('admin.user_dropdown')
             </div>
             <h1 class="text-xl font-bold mx-10">Cases</h1>
             <p class="text-lg my-3  mx-10">Case ID : {{ $case->id  }}</p>
