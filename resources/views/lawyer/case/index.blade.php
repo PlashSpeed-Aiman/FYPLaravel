@@ -8,13 +8,13 @@
                 @include('lawyer.user_dropdown')
             </div>
             <h1 class="text-xl font-bold mx-10">Cases</h1>
-            <p class="text-lg my-3  mx-10">Case ID : {{ $case->id  }}</p>
-            <p class="my-3 mx-10">View yours cases to see the progress, remarks, etc</p>
+            <p class="text-lg my-3  mx-10">Case ID : {{ $id  }}</p>
+            <p class="my-3 mx-10">View your cases to see the progress, remarks, etc</p>
             <div class="mx-10">
                 <table class="table bg-white">
                     <thead>
                     <tr>
-                       <th>Documents Name</th>
+                        <th>Documents Name</th>
                         <th>Uploaded Date</th>
                         <th>Actions</th>
                     </tr>
@@ -39,7 +39,7 @@
                     <h1>Case Ongoing</h1>
                 </div>
             </div>
-{{--    Add Documents        --}}
+            {{--    Add Documents        --}}
             <div class="mx-10" >
                 <h1 class="my-5">Add Documents</h1>
                 <form class='  flex flex-col items-center  card

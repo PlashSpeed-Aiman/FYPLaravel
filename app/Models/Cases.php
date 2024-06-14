@@ -17,4 +17,13 @@ class Cases extends Model
         'case_status',
     ];
 
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function lawyerCase()
+    {
+        return $this->hasMany(LawyerCase::class);
+    }
 }

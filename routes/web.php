@@ -42,6 +42,21 @@ Route::group(['prefix'=>'client','middleware'=>[\Spatie\Permission\Middleware\Ro
     Route::get('/payments', [App\Http\Controllers\ClientController::class, 'index'])->name('client.payments');
 });
 
+Route::group(['prefix'=>'lawyer','middleware'=>[\Spatie\Permission\Middleware\RoleMiddleware::using('lawyer')]], function(){
+    Route::get('/dashboard', [App\Http\Controllers\LawyerController::class, 'index'])->name('lawyer.dashboard');
+    Route::group(['prefix'=>'clients'], function(){
+        Route::get('/{id}', [App\Http\Controllers\LawyerController::class, 'client'])->name('lawyer.client');
+
+    });
+   Route::get('/appointments', [App\Http\Controllers\LawyerController::class, 'appointments'])->name('lawyer.appointments');
+   Route::get('/settings', [App\Http\Controllers\LawyerController::class, 'settings'])->name('lawyer.settings');
+   Route::get('/settings/change-password', function () {
+        return view('lawyer.change_password');
+    });
+    Route::get('/payments', [App\Http\Controllers\LawyerController::class, 'index'])->name('lawyer.payments');
+});
+
+
 Route::get('/dashboard',function() {
     if (Auth::check()) {
         $auth = Auth::user();
@@ -51,6 +66,10 @@ Route::get('/dashboard',function() {
         } else if ( $user->hasRole('client')) {
             return redirect()->route('client.dashboard');
         }
+        else if ( $user->hasRole('lawyer')) {
+            return redirect()->route('lawyer.dashboard');
+        }
+
     }
     // return not found
 

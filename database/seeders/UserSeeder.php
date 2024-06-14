@@ -14,19 +14,30 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         //
-        $user = new User();
-        $user->name = 'Admin2 Doe';
-        $user->email = 'admin2@doe.com';
-        $user->password = bcrypt('password');
-        $user->assignRole('admin');
-        $user->save();
+//        $user = new User();
+//        $user->name = 'Admin2 Doe';
+//        $user->email = 'admin2@doe.com';
+//        $user->password = bcrypt('password');
+//        $user->assignRole('admin');
+//        $user->save();
+//
+//        $user = new User();
+//        $user->name = 'Client2 Doe';
+//        $user->email = 'client2@doe.com';
+//        $user->password = bcrypt('password');
+//        $user->assignRole('client');
+//        $user->save();
+        $this->createLawyer();
 
-        $user = new User();
-        $user->name = 'Client2 Doe';
-        $user->email = 'client2@doe.com';
-        $user->password = bcrypt('password');
-        $user->assignRole('client');
-        $user->save();
+    }
 
+    private function createLawyer()
+    {
+        $user = new User();
+        $user->name = 'Lawyer2 Doe';
+        $user->email = 'lawyer@doe.com';
+        $user->password = bcrypt('password');
+        $user->assignRole('lawyer');
+        $user->save();
     }
 }
