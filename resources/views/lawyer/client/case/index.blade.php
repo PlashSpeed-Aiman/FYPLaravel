@@ -8,8 +8,8 @@
                 @include('lawyer.user_dropdown')
             </div>
             <h1 class="text-xl font-bold mx-10">Cases</h1>
-            <p class="text-lg my-3  mx-10">Case ID : {{ $id  }}</p>
-            <p class="my-3 mx-10">View your cases to see the progress, remarks, etc</p>
+            <p class="text-lg my-3  mx-10">Case ID : {{ $case->id  }}</p>
+            <p class="my-3 mx-10">View yours cases to see the progress, remarks, etc</p>
             <div class="mx-10">
                 <table class="table bg-white">
                     <thead>

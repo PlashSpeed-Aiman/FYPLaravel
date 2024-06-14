@@ -18,17 +18,17 @@
                     </thead>
 
                     <tbody>
-                    @if($cases->isEmpty())
+                    @if($clients->isEmpty())
                         <tr>
-                            <td colspan="4">No cases found</td>
+                            <td colspan="4">No clients found</td>
                         </tr>
                     @else
-                    @foreach($cases as $case)
+                    @foreach($clients as $client)
                         <tr>
-                            <td><a class="text-blue-600 hover:underline " href="{{url('lawyer/cases/'.$case->id)}}">{{ $case->id }}</a></td>
-                            <td>{{ $case->client->name }}</td>
-                            <td>{{ $case->client->phone }}</td>
-                            <td>{{ $case->client->email }}</td>
+                            <td><a class="text-blue-600 hover:underline " href="{{url('lawyer/clients/'.$client->id)}}">{{ $client->id }}</a></td>
+                            <td>{{ $client->name }}</td>
+                            <td>{{ $client->phone }}</td>
+                            <td>{{ $client->email }}</td>
                         </tr>
                     @endforeach
                     @endif

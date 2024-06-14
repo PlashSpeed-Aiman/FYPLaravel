@@ -46,7 +46,7 @@ Route::group(['prefix'=>'lawyer','middleware'=>[\Spatie\Permission\Middleware\Ro
     Route::get('/dashboard', [App\Http\Controllers\LawyerController::class, 'index'])->name('lawyer.dashboard');
     Route::group(['prefix'=>'clients'], function(){
         Route::get('/{id}', [App\Http\Controllers\LawyerController::class, 'client'])->name('lawyer.client');
-
+        Route::get('/{id}/cases/{case_id}', [App\Http\Controllers\LawyerController::class, 'case'])->name('lawyer.client.case');
     });
    Route::get('/appointments', [App\Http\Controllers\LawyerController::class, 'appointments'])->name('lawyer.appointments');
    Route::get('/settings', [App\Http\Controllers\LawyerController::class, 'settings'])->name('lawyer.settings');

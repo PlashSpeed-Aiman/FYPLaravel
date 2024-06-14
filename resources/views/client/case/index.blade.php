@@ -1,11 +1,11 @@
 @extends('layout')
 @section('content')
     <section class="flex bg-dashboard font-['Poppins']">
-{{--        @include('client.case.navbar',['id' => $id])--}}
+        @include('client.case.navbar',['id' => $id])
         <div class="w-full min-h-screen flex flex-col font-['Poppins']">
             <div class="flex justify-end">
                 {{--    Profile Pic, might put dropdown for logout            --}}
-                @include('lawyer.user_dropdown')
+                @include('client.user_dropdown')
             </div>
             <h1 class="text-xl font-bold mx-10">Cases</h1>
             <p class="text-lg my-3  mx-10">Case ID : {{ $case->id  }}</p>
