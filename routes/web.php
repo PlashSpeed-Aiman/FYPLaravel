@@ -39,7 +39,7 @@ Route::group(['prefix'=>'client','middleware'=>[\Spatie\Permission\Middleware\Ro
     Route::get('/settings/change-password', function () {
         return view('client.change_password');
     });
-    Route::get('/payments', [App\Http\Controllers\ClientController::class, 'index'])->name('client.payments');
+    Route::get('/payments', [App\Http\Controllers\ClientController::class, 'payments'])->name('client.payments');
 });
 
 Route::group(['prefix'=>'lawyer','middleware'=>[\Spatie\Permission\Middleware\RoleMiddleware::using('lawyer')]], function(){

@@ -31,6 +31,6 @@ class LawyerController extends Controller
         foreach ( $this->request->file('files') as $file) {
             $document = $this->documentService->storeDocument($file,  $this->request->case_id);
         }
-        return response()->json(['msg'=>'Document uploaded successfully']);
+        return response()->json(['msg'=>'Documents uploaded successfully']);
     }
 }
