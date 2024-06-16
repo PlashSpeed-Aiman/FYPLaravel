@@ -208,7 +208,9 @@
             })
                 .then((response) => response.json())
                 .then((data) => {
+                    alert("Document uploaded successfully");
                     console.log(data);
+                    location.reload();
                 })
                 .catch((error) => {
                     console.error("Error:", error);
