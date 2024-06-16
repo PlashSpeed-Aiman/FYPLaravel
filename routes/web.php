@@ -39,6 +39,8 @@ Route::group(['prefix'=>'client','middleware'=>[\Spatie\Permission\Middleware\Ro
     Route::get('/settings/change-password', function () {
         return view('client.change_password');
     });
+    Route::get('/documents/{document_id}', [App\Http\Controllers\ClientController::class, 'downloadDocument'])->name('client.documents.download');
+    Route::delete('/documents/{document_id}', [App\Http\Controllers\ClientController::class, 'deleteDocument'])->name('client.documents.delete');
     Route::get('/payments', [App\Http\Controllers\ClientController::class, 'payments'])->name('client.payments');
 });
 

@@ -33,4 +33,9 @@ class LawyerController extends Controller
         }
         return response()->json(['msg'=>'Documents uploaded successfully']);
     }
+
+    public function deleteDocument($documentId){
+        $this->documentService->deleteDocument($documentId);
+        return response()->json(['msg'=>'Documents deleted successfully']);
+    }
 }

@@ -37,7 +37,10 @@ class ClientController extends Controller
 
     public function case($id){
         $case = Cases::find($id);
-        return view('client.case.index', ['id' => $id, 'case' => $case]);
+        $documents = $case->documents;
+        if(!$documents)
+            $documents = [];
+        return view('client.case.index', ['id' => $id, 'case' => $case, 'documents' => $documents]);
     }
 
     public function appointments(){
@@ -61,6 +64,8 @@ class ClientController extends Controller
         return view('client.payment', compact('invoices'));
 
     }
+
+
 
     public function downloadDocument($documentId){
         return $this->documentService->downloadDocument($documentId);

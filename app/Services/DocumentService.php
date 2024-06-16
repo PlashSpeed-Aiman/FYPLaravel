@@ -24,4 +24,12 @@ class DocumentService
        return Storage::download($document->document_path,$document->document_name);
     }
 
+    public function deleteDocument($documentId)
+    {
+        $document = Document::findOrFail($documentId);
+        Storage::delete($document->document_path);
+        $document->delete();
+
+    }
+
 }

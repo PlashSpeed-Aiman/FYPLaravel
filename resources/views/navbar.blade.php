@@ -1,7 +1,7 @@
-<nav class="p-5 w-48 bg-blue-200 min-h-screen">
+<nav class="p-5 w-48 bg-white   min-h-screen">
     <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png"
-        class="h-24 w-24 mx-5 my-4 " id="profile-pic"/>
+        src='{{asset('/assets/icon.svg')}}'
+        class="object-cover my-4 h-48 " id="profile-pic"/>
     <ul class="flex flex-col gap-3 font-['Poppins']">
         <li><a class=" w-full flex gap-2 hover:text-blue-600 f  " href="{{ route('admin.dashboard') }}">
                 <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
