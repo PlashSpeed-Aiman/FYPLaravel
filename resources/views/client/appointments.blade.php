@@ -23,7 +23,7 @@
                     <tbody>
                     @foreach($appointments as $appointment)
                         <tr>
-                            <td><a class="text-blue-600 hover:underline " href="{{url('client/appointment/1')}}">1</a></td>
+                            <td><a class="text-blue-600 hover:underline " href="{{url('client/appointment/'.$appointment->id)}}">{{ $appointment->id }}</a></td>
                             <td>{{$appointment->date}}</td>
                             <td>{{$appointment->time}}</td>
                             <td>
