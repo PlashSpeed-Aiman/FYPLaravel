@@ -32,6 +32,6 @@ class AppointmentController extends Controller
         $appointment->reason = $data['reason'];
         $appointment->appointment_status = 'pending';
         $client->appointments()->save($appointment);
-        return $appointment;
+        return redirect()->back();
     }
 }
