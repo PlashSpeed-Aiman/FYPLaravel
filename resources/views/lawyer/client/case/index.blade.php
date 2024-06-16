@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <section class="flex bg-dashboard font-['Poppins']">
+    <section x-data="proposalTab()" class="flex bg-dashboard font-['Poppins']">
         {{--        @include('client.case.navbar',['id' => $id])--}}
         <div class="w-full min-h-screen flex flex-col font-['Poppins']">
             <div class="flex justify-end">
@@ -46,7 +46,7 @@
                             <td>{{$document->created_at}}</td>
                             <td>
                                 <div>
-                                    <button class="btn btn-ghost h-10  hover:bg-red-400">
+                                    <button @click="deleteDocument({{$document->id}})" class="btn btn-ghost h-10  hover:bg-red-400">
                                         <svg class="h-5" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"
                                              fill="#c0bfbc">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -72,7 +72,7 @@
                 </div>
             </div>
             {{--    Add Documents        --}}
-            <section x-data="proposalTab()" class="flex flex-col items-center justify-center">
+            <section  class="flex flex-col items-center justify-center">
                 <form
                     x-on:dragenter.prevent="handleDragEnter"
                     x-on:submit.prevent
@@ -168,6 +168,26 @@
                         submitFiles(this.files);
                         this.files = [];
                     }
+                },
+                deleteDocument(document_id) {
+                    fetch("{{ url('api/v1/lawyers/documents') }}/" + document_id, {
+                        method: "DELETE",
+                        headers: {
+                            "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                        },
+                    })
+                        //follow redirect
+                        .then((response) => response.json())
+                        .then((data) => {
+                            alert("Document deleted successfully");
+                            //refresh page
+                            console.log(data);
+                            location.reload();
+
+                        })
+                        .catch((error) => {
+                            console.error("Error:", error);
+                        });
                 }
 
 
