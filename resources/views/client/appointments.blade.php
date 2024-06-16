@@ -9,8 +9,9 @@
             </div>
             <h1 class="text-xl font-bold mx-10">Appointment</h1>
             <p class="my-3 mx-10">View your appointments to see the progress, remarks, etc</p>
-            <a href="{{route('client.appointment.request')}}" class="btn btn-ghost border   ml-auto mr-5 mb-5 w-1/6 ">Request</a>
-            <div class="mx-5">
+            <div class="mx-9">
+                <a href="{{route('client.appointment.request')}}" class="btn  border   ml-auto mr-5 mb-5 w-fit  ">Request</a>
+
                 <table class="table bg-white">
                     <thead>
                     <tr>

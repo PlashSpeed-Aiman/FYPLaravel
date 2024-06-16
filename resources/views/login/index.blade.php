@@ -4,7 +4,6 @@
     <section class="min-h-screen grid grid-cols-2">
         {{--  left side of page  --}}
         <div id="left-side " class="bg-login">
-            <h1>dwa</h1>
         </div>
         <div id="right-side" class=" h-full">
             <a href="{{ url('/')  }}" class="btn btn-ghost my-2 mx-2">

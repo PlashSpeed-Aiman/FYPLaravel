@@ -30,7 +30,7 @@ Route::group(['prefix'=>'admin','middleware'=>[\Spatie\Permission\Middleware\Rol
 
 });
 Route::group(['prefix'=>'client','middleware'=>[\Spatie\Permission\Middleware\RoleMiddleware::using('client')]], function(){
-    Route::get('/dashboard', [App\Http\Controllers\ClientController::class, 'index'])->name('client.dashboard');
+    Route::get('/', [App\Http\Controllers\ClientController::class, 'index'])->name('client.dashboard');
     Route::get('/cases', [App\Http\Controllers\ClientController::class, 'cases'])->name('client.cases');
     Route::get('/cases/{id}', [App\Http\Controllers\ClientController::class, 'case'])->name('client.cases.case');
     Route::get('/appointments', [App\Http\Controllers\ClientController::class, 'appointments'])->name('client.appointments');

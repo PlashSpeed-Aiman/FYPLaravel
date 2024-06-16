@@ -27,7 +27,7 @@ class ClientController extends Controller
     }
 
     public function index(){
-        return view('client.index');
+        return redirect()->route('client.cases');
     }
 
     public function cases(){

@@ -11,7 +11,7 @@
             <section>
                 <h1 class="text-xl font-bold mx-10">Payment</h1>
                 <p class="my-3 mx-10 ">View your invoices for rendered services</p>
-                <div class="mx-5">
+                <div class="mx-9">
                     <table class="table bg-white">
                         <thead>
                         <tr>

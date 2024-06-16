@@ -10,7 +10,7 @@
             </div>
             <h1 class="text-xl font-bold mx-10">Cases</h1>
             <p class="my-3 mx-10">View your cases to see the progress, remarks, etc</p>
-            <div class="mx-5">
+            <div class="mx-9 my-2">
                 <table class="table bg-white">
                     <thead>
                     <tr>

@@ -7,7 +7,15 @@
                 {{--    Profile Pic, might put dropdown for logout            --}}
                 @include('client.user_dropdown')
             </div>
-            <h1 class="text-xl font-bold mx-10">Cases</h1>
+            <div class="flex items-center">
+                <a href="{{ url('client/cases')  }}" class=" btn ml-10  text-xl">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+
+                </a>
+                <h1 class="ml-5 font-bold text-xl">Cases</h1>
+            </div>
             <p class="text-lg my-3  mx-10">Case ID : {{ $case->id  }}</p>
             <p class="my-3 mx-10">View yours cases to see the progress, remarks, etc</p>
             <div class="mx-10">
