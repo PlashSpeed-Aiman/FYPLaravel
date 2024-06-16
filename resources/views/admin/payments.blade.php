@@ -26,8 +26,8 @@
                         @foreach($invoices as $invoice)
                             <tr>
                                 <td>{{ $invoice->id }}</td>
-                                <td>{{ $invoice->invoice_date }}</td>
                                 <td>{{ $invoice->client->name }}</td>
+                                <td>{{ $invoice->invoice_date }}</td>
                                 <td>{{ $invoice->amount }}</td>
                                 <td>
                                     {{--                                    <a href="{{ route('invoice.show', $invoice->id) }}" class="btn btn-primary">View</a>--}}
