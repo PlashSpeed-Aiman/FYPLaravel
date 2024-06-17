@@ -16,8 +16,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Time</th>
-                        <th>Reason</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -26,8 +25,7 @@
                         <td><a href="{{url('/admin/clients/'.$client->id)}}" class="text-blue-600 hover:underline ">{{ $client->id}}</a></td>
                         <td>{{ $client->name }}</td>
                         <td>{{ $client->email }}</td>
-                        <td>{{ $client->phone }}</td>
-                        <td>{{ $client->address }}</td>
+
 
 @endforeach
                     </tbody>
