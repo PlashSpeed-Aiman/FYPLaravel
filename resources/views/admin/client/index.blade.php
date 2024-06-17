@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <section class="flex bg-dashboard font-['Poppins']">
+    <section x-data="page()" class="flex bg-dashboard font-['Poppins']">
         @include('navbar')
         <div class="w-full min-h-screen flex flex-col font-['Poppins']">
             <div class="flex justify-end">
@@ -24,8 +24,12 @@
                     <p class="py-4">Press ESC key or click the button below to close</p>
                     <div class="modal-action">
                         <form method="dialog">
-                            <!-- if there is a button in form, it will close the modal -->
+                            <label >
+                                Case Name
+                                <input x-model="case_name" class="input">
+                            </label>
                             <button class="btn">Close</button>
+                            <button @click="createNewCase()" class="btn bg-blue-900 text-white">Create</button>
                         </form>
                     </div>
                 </div>
@@ -45,7 +49,7 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Case Name</th>
-                                <th>Case Type</th>
+                                <th>Case Number</th>
                                 <th>Case Status</th>
                             </tr>
                             </thead>
@@ -58,10 +62,10 @@
                             @else
                             @foreach($cases as $case)
                                 <tr>
-                                    <td><a class="text-blue-600 hover:underline " href="{{url('lawyer/clients/'.$id.'/cases/'.$case->id)}}">{{ $case->id }}</a></td>
+                                    <td><a class="text-blue-600 hover:underline " href="{{url('lawyer/clients/'.$client->id.'/cases/'.$case->id)}}">{{ $case->id }}</a></td>
+                                    <td>{{ $case->case_name }}</td>
                                     <td>{{ $case->case_number }}</td>
-                                    <td>{{ $case->type }}</td>
-                                    <td>{{ $case->status }}</td>
+                                    <td>{{ $case->case_status }}</td>
                                 </tr>
                             @endforeach
                             @endif
@@ -91,6 +95,41 @@
 
         </div>
     </section>
+    <script defer>
+        document.addEventListener('DOMContentLoaded',function(){
+            //init alpine js
+            document.addEventListener('alpine:init', () => {
+                Alpine.data('page', page);
+            });
+        })
+
+        function page(){
+            return {
+                case_name: '',
+                createNewCase(){
+                    fetch('{{url('/api/v1/admin/clients/'.$client->id.'/cases')}}',{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': '{{csrf_token()}}'
+                        },
+                        body: JSON.stringify({
+                            case_name: this.case_name,
+                        })
+
+                        }
+                    ).then(response => response.json())
+                        .then(data => {
+                            console.log(data)
+                        }).catch(error => {
+                            console.error('Error:', error);
+                        });
+                }
+
+            }
+        }
+    </script>
 @endsection
 
 

@@ -38,7 +38,7 @@ Route::group(['prefix'=>'client','middleware'=>[\Spatie\Permission\Middleware\Ro
     Route::get('/cases/{id}', [App\Http\Controllers\ClientController::class, 'case'])->name('client.cases.case');
     Route::get('/appointments', [App\Http\Controllers\ClientController::class, 'appointments'])->name('client.appointments');
     Route::get('/appointments/request', [App\Http\Controllers\ClientController::class, 'requestAppointment'])->name('client.appointment.request');
-    Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings');
+    Route::get('/settings', [App\Http\Controllers\ClientController::class, 'settings'])->name('client.settings');
     Route::get('/settings/change-password', function () {
         return view('client.change_password');
     });

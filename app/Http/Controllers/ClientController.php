@@ -66,7 +66,13 @@ class ClientController extends Controller
 
     }
 
+    public function settings(){
+        $auth_user = $this->auth::user();
+        $user = User::where('id', $auth_user->id)->first();
+        $client = $user->client;
 
+        return view('client.settings',compact('client'));
+    }
 
     public function downloadDocument($documentId){
         return $this->documentService->downloadDocument($documentId);

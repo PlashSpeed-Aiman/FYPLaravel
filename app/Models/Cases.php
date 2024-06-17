@@ -11,6 +11,7 @@ class Cases extends Model
 
 
     protected $fillable = [
+        'case_name',
         'case_number',
         'date',
         'client_id',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Enums\CaseStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Cases;
 use App\Models\Client;
@@ -19,14 +20,21 @@ class AdminController extends Controller
         $this->request = $request;
         $this->auth = $auth;
     }
-    public function addCase(){
-        $request = request();
+    public function addCase($client_id){
+
+        $auth_user = $this->auth::user();
+        $user = User::where('id', $auth_user->id)->first();
+        $client = $user->client;
+
         $case = Cases::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'status' => $request->status,
-            'client_id' => $request->client_id,
-            'lawyer_id' => $request->lawyer_id,
+            'case_name' => $this->request->case_name,
+            //random numbers plus alphabets
+            'case_number' => 'CASE-'.rand(1000,9999).strtoupper(substr(str_shuffle('abcdefghijklmnopqrstuvwxyz'), 0, 4)),
+            'client_id' => $client_id,
+            'case_status' => CaseStatus::OPEN,
+            //date time now
+            'date' => now(),
+
         ]);
         return redirect()->back();
 
@@ -51,4 +59,5 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+
 }
