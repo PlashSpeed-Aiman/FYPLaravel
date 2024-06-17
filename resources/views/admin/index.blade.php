@@ -7,28 +7,7 @@
                 @include('admin.user_dropdown')
             </div>
             <h1 class="text-xl font-bold mx-10">Admin Panel</h1>
-            <div class="flex xs:sm:flex-col gap-2 mx-10 my-5  ">
-                <div class="flex flex-col flex-1">
-                    <label class="font-bold mb-2 mx-1">Customer</label>
-                    <input class="input border border-zinc-200">
-                </div>
-                <div class="flex flex-col flex-1">
-                    <label class="font-bold mb-2 mx-1">Phone Number</label>
-                    <input class="input border border-zinc-200">
-                </div>
-                <div class="flex flex-col flex-1">
-                    <label class="font-bold mb-2 mx-1">Start Date</label>
-                    <input class="input border border-zinc-200">
-                </div>
-                <div class="flex flex-col flex-1">
-                    <label class="font-bold mb-2 mx-1">End Date</label>
-                    <input class="input border border-zinc-200">
-                </div>
-            </div>
-            <div class="flex  mx-10  gap-5">
-                <button class="btn bg-zinc-500 text-white">Search</button>
-                <button class="btn bg-zinc-500 text-white">Reset</button>
-            </div>
+            <p class="my-3 mx-10">View all cases and their status</p>
             <div class="mx-5 my-5">
                 <table class="table bg-white">
                     <thead>

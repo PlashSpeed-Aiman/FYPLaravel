@@ -11,6 +11,7 @@ class Client extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id', // Add this line
         'name',
         'address',
         'phone',
@@ -28,5 +29,9 @@ class Client extends Model
     public function cases(): HasMany
     {
         return $this->hasMany(Cases::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -27,6 +27,8 @@ class UserSeeder extends Seeder
 //        $user->password = bcrypt('password');
 //        $user->assignRole('client');
 //        $user->save();
+//        $this->createAdmin();
+        $this->createUser();
         $this->createLawyer();
 
     }
@@ -38,6 +40,26 @@ class UserSeeder extends Seeder
         $user->email = 'lawyer@doe.com';
         $user->password = bcrypt('password');
         $user->assignRole('lawyer');
+        $user->save();
+    }
+
+    private function createUser()
+    {
+        $user = new User();
+        $user->name = 'User2 Doe';
+        $user->email = 'user2@doe.com';
+        $user->password = bcrypt('password');
+        $user->assignRole('client');
+        $user->save();
+    }
+
+    private function createAdmin()
+    {
+        $user = new User();
+        $user->name = 'Admin2 Doe';
+        $user->email = 'admin2@doe.com';
+        $user->password = bcrypt('password');
+        $user->assignRole('admin');
         $user->save();
     }
 }

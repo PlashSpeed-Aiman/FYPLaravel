@@ -19,6 +19,9 @@ Route::group(['middleware'=>'web','prefix' => 'v1'], function () {
         Route::post('/documents', [App\Http\Controllers\API\LawyerController::class, 'uploadDocument'])->name('lawyer.document.upload');
         Route::delete('/documents/{document_id}', [App\Http\Controllers\API\LawyerController::class, 'deleteDocument'])->name('lawyer.document.delete');
     });
+    Route::group(['prefix'=>'admin'], function(){
+        Route::post('/clients', [App\Http\Controllers\API\AdminController::class, 'addClient'])->name('admin.client.add');
+    });
 
 });
 

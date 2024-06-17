@@ -9,7 +9,7 @@
             </div>
             <h1 class="text-xl font-bold mx-10">Appointment Booking</h1>
             <p class="my-3 mx-10">Book your appointments and have them reviewed by the admin</p>
-            <form target="_blank" method="post" action="{{route('client.appointment.store')}}" class="my-3 w-full flex flex-col gap-2">
+            <form method="post" action="{{route('client.appointment.store')}}" class="my-3 w-full flex flex-col gap-2">
                 @csrf {{ csrf_field() }}
                 <h1 class="text-lg  mx-12">Date</h1>
                 <input name="date" type="date" class="input border border-zinc-200 mx-10">
@@ -23,7 +23,21 @@
 
         </div>
     </section>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('input[type="submit"]').addEventListener('click', function (e) {
+                e.preventDefault()
+                let date = document.querySelector('input[name="date"]').value
+                let time = document.querySelector('input[name="time"]').value
+                let reason = document.querySelector('textarea[name="reason"]').value
+                if (date === '' || time === '' || reason === '') {
+                    alert('Please fill in all fields')
+                    return
+                }
+                this.closest('form').submit()
+            })
+        })
+    </script>
 @endsection
 
 

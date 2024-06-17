@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Cases;
 use App\Models\Client;
+use App\Models\User;
 use App\Services\DocumentService;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -45,9 +46,9 @@ class ClientController extends Controller
 
     public function appointments(){
         $request = request();
-        $user = Auth::user();
+        $user = User::find($this->auth::user()->id);
 
-        $client = \App\Models\Client::find($user->id);
+        $client = $user->client;
         $appointments = $client->appointments;
         return view('client.appointments', ['appointments' => $appointments]);
     }

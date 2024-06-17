@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\Cases;
 use App\Models\Invoice;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,6 +31,9 @@ class AdminController extends Controller
         return view('admin.case.index', ['case' => $case]);
 
     }
+
+
+
     public function appointments(){
         $appointments = Appointment::all();
         return view('admin.appointments', ['appointments' => $appointments]);
@@ -52,5 +56,20 @@ class AdminController extends Controller
         //get sum for all payments per invoice
 
         return view('admin.payments', ['invoices' => $invoices]);
+    }
+
+    public function clients(){
+        $clients = User::role('client')->get();
+        return view('admin.clients', ['clients' => $clients]);
+    }
+    public function client($id){
+        $user = User::find($id);
+        $client = $user->client;
+        $cases = $client->cases;
+        $invoices = $client->invoices;
+        return view('admin.client.index', ['client' => $client, 'cases' => $cases, 'invoices' => $invoices]);
+    }
+    public function createClient(){
+        return view('admin.client.create');
     }
 }

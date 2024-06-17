@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +24,8 @@ class AppointmentController extends Controller
             'time' => 'required',
             'reason' => 'required'
         ]);
-        $client = \App\Models\Client::find($user->id);
+        $realUser = User::find($user->id);
+        $client = $realUser->client;
 
         $appointment = new \App\Models\Appointment();
         $appointment->appointment_number = 'APPT-'.rand(1000,9999);

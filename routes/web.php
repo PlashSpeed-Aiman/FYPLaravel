@@ -23,6 +23,9 @@ Route::group(['prefix'=>'admin','middleware'=>[\Spatie\Permission\Middleware\Rol
     Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/cases', [App\Http\Controllers\AdminController::class, 'cases'])->name('admin.cases');
     Route::get('/cases/{id}', [App\Http\Controllers\AdminController::class, 'case'])->name('admin.cases.case');
+    Route::get('/clients', [App\Http\Controllers\AdminController::class, 'clients'])->name('admin.clients');
+    Route::get('/clients/create', [App\Http\Controllers\AdminController::class, 'createClient'])->name('admin.clients.create');
+    Route::get('/clients/{id}', [App\Http\Controllers\AdminController::class, 'client'])->name('admin.clients.client');
     Route::get('/appointments', [App\Http\Controllers\AdminController::class, 'appointments'])->name('admin.appointments');
     Route::get('/appointments/{id}/approve', [App\Http\Controllers\AdminController::class, 'approveAppointment'])->name('admin.appointments.approve');
     Route::get('/appointments/{id}/decline', [App\Http\Controllers\AdminController::class, 'declineAppointment'])->name('admin.appointments.decline');
