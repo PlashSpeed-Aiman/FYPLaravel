@@ -1,6 +1,7 @@
 <nav class="p-5 w-48 bg-white min-h-screen">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png"
-         class="h-24 w-24 mx-5 my-4 " id="profile-pic"/>
+    <img                      src="{{asset('assets/icon.svg')}}"
+
+                              class="h-64 w-64 object-cover   " id="profile-pic"/>
     <ul class="flex flex-col gap-3 font-['Poppins']">
 
         <li><a class=" w-full flex gap-2 hover:text-blue-600  " href="{{route('client.cases')}}">

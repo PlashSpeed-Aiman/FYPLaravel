@@ -13,7 +13,7 @@
             <div class="flex  justify-between">
                 <div id="profile" class="mx-10 flex ">
                     <img class="h-24 w-24 rounded-full border-2 border-white shadow-md"
-                         src="https://upload.wikimedia.org/wikipedia/en/3/3b/SpongeBob_SquarePants_character.svg"
+                         src="{{asset('assets/profile-picture.svg')}}"
                          id="profile-pic"/>
                     <div class="mx-5 flex flex-col justify-center " id="profile-details">
                         <h1 class="font-bold text-xl">Spongebob SquarePants</h1>
