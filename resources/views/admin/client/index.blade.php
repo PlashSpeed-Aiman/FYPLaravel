@@ -48,7 +48,7 @@
                             @else
                             @foreach($cases as $case)
                                 <tr>
-                                    <td><a class="text-blue-600 hover:underline " href="{{url('admin/clients/'.$client->id.'/cases/'.$case->id)}}">{{ $case->id }}</a></td>
+                                    <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $case->case_name }}</td>
                                     <td>{{ $case->case_number }}</td>
                                     <td>{{ $case->case_status }}</td>
