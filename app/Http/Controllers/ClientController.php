@@ -79,4 +79,5 @@ class ClientController extends Controller
         return $this->documentService->downloadDocument($documentId);
     }
 
+
 }
