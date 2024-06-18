@@ -6,6 +6,7 @@ use App\Enums\CaseStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Cases;
 use App\Models\Client;
+use App\Models\Invoice;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,9 +56,40 @@ class AdminController extends Controller
            'name' => $request->name
 
         ]);
-
-
         return redirect()->back();
     }
+    public function addInvoice( $client_id)
+    {
+        $auth_user = $this->auth::user();
+        $user = User::where('id', $auth_user->id)->first();
+        if($user->hasRole('admin')){
+            $client = Client::where('id', $client_id)->first();
+            $this->request->validate([
+                'amount' => 'required',
+                'files.*' => 'required|file|mimes:pdf,docx,doc,jpg,png',
+            ]);
+            // Access the data sent from the FormData
+            $amount = $this->request->input('amount');
+            $file = $this->request->file('files');
+
+            // Handle the files
+
+            $path = $file[0]->store('invoices');
+
+            $invoice_num = 'INV-'.rand(1000,9999).strtoupper(substr(str_shuffle('abcdefghijklmnopqrstuvwxyz'), 0, 4));
+            $invoice = Invoice::create([
+                'client_id' => $client_id,
+                'invoice_number' => $invoice_num,
+                'amount' => $amount,
+                'status' => 'unpaid',
+                'document_name' => $invoice_num.'-'.$file[0]->getClientOriginalName(),
+                'document_path' => $path,
+                'invoice_date' => now(),
+            ]);
+            return redirect()->back();
+        }
+        return response()->json(['message' => 'Unauthorized'], 401);
+    }
+
 
 }

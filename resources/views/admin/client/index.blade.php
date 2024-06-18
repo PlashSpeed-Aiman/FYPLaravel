@@ -18,22 +18,8 @@
                 </div>
             </div>
 {{--            MODAL START--}}
-            <dialog id="my_modal_1" class="modal">
-                <div class="modal-box">
-                    <h3 class="font-bold text-lg">Hello!</h3>
-                    <p class="py-4">Press ESC key or click the button below to close</p>
-                    <div class="modal-action">
-                        <form method="dialog">
-                            <label >
-                                Case Name
-                                <input x-model="case_name" class="input">
-                            </label>
-                            <button class="btn">Close</button>
-                            <button @click="createNewCase()" class="btn bg-blue-900 text-white">Create</button>
-                        </form>
-                    </div>
-                </div>
-            </dialog>
+          @include('admin.client.dialogs.new_case')
+          @include('admin.client.dialogs.new_invoice')
 {{--            MODAL END--}}
             <div class="mx-10 my-5 flex flex-col gap-2">
 {{--                collapsing details--}}
@@ -62,7 +48,7 @@
                             @else
                             @foreach($cases as $case)
                                 <tr>
-                                    <td><a class="text-blue-600 hover:underline " href="{{url('lawyer/clients/'.$client->id.'/cases/'.$case->id)}}">{{ $case->id }}</a></td>
+                                    <td><a class="text-blue-600 hover:underline " href="{{url('admin/clients/'.$client->id.'/cases/'.$case->id)}}">{{ $case->id }}</a></td>
                                     <td>{{ $case->case_name }}</td>
                                     <td>{{ $case->case_number }}</td>
                                     <td>{{ $case->case_status }}</td>
@@ -79,7 +65,37 @@
                         Invoices
                     </div>
                     <div class="collapse-content">
-                        <p>hello</p>
+                        <button onclick="my_modal_2.showModal()" class="btn w-fit mb-2 border border-neutral">Add New Invoice</button>
+                       <table class="table bg-white">
+                           <thead>
+                            <tr>
+                                 <th>No.</th>
+                                 <th>Invoice Number</th>
+                                 <th>Amount</th>
+                                 <th>Due Date</th>
+                                 <th>Status</th>
+                                    <th>Actions</th>
+                            </tr>
+
+                           </thead>
+                            <tbody>
+                            @if($invoices->isEmpty())
+                                <tr>
+                                    <td colspan="5">No invoices found</td>
+                                </tr>
+                            @else
+                            @foreach($invoices as $invoice)
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $invoice->invoice_number }}</td>
+                                    <td>{{ $invoice->amount }}</td>
+                                    <td>{{ $invoice->document_name }}</td>
+                                    <td>{{ $invoice->status }}</td>
+                                    <td><a class="text-blue-600 hover:underline " href="{{url('admin/clients/'.$client->id.'/invoices/'.$invoice->id)}}">Download</a></td>
+                                </tr>
+                            @endforeach
+    @endif
+                       </table>
                     </div>
                 </div>
                 <div class="collapse bg-base-200">
@@ -88,7 +104,34 @@
                         Payments
                     </div>
                     <div class="collapse-content">
-                        <p>hello</p>
+                        <table class="table bg-white">
+                            <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Payment Number</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+{{--                            @if($payments->isEmpty())--}}
+{{--                                <tr>--}}
+{{--                                    <td colspan="5">No payments found</td>--}}
+{{--                                </tr>--}}
+{{--                            @else--}}
+{{--                            @foreach($payments as $payment)--}}
+{{--                                <tr>--}}
+{{--                                    <td><a class="text-blue-600 hover:underline " href="{{url('lawyer/clients/'.$client->id.'/payments/'.$payment->id)}}">{{ $payment->id }}</a></td>--}}
+{{--                                    <td>{{ $payment->payment_number }}</td>--}}
+{{--                                    <td>{{ $payment->amount }}</td>--}}
+{{--                                    <td>{{ $payment->date }}</td>--}}
+{{--                                    <td>{{ $payment->status }}</td>--}}
+{{--                                </tr>--}}
+{{--                            @endforeach--}}
+{{--                            @endif--}}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -106,7 +149,41 @@
         function page(){
             return {
                 case_name: '',
-                createNewCase(){
+                amount:'',
+                due_date:'',
+                files: [],
+                createNewInvoice(e){
+                    const formData = new FormData();
+                    this.files.forEach((file) => {
+                        formData.append("files[]", file);
+                    });
+                    console.log(this.amount)
+                    formData.append("amount", this.amount);
+                    if(this.amount === ''){
+                        e.preventDefault()
+                        return
+                    }
+                    fetch('{{url('/api/v1/admin/clients/'.$client->id.'/invoices')}}',{
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': '{{csrf_token()}}'
+                        },
+                        body: formData
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data)
+                            location.reload()
+                        }).catch(error => {
+                        console.error('Error:', error);
+                    });
+                },
+                createNewCase(e){
+                    if(this.case_name === ''){
+                        e.preventDefault()
+                        return
+                    }
                     fetch('{{url('/api/v1/admin/clients/'.$client->id.'/cases')}}',{
                         method: 'POST',
                         headers: {
@@ -119,15 +196,77 @@
                         })
 
                         }
-                    ).then(response => response.json())
+                    ).then(response => response)
                         .then(data => {
                             console.log(data)
+                            location.reload()
                         }).catch(error => {
                             console.error('Error:', error);
                         });
-                }
+                },
+                handleChange(event) {
+                    if (event.target.files.length > 0) {
+                        // for (let i = 0; i < event.target.files.length; i++) {
+                            this.files[0] = event.target.files[0]
+                        // }
+                    }
+                },
+                handleDrop(event) {
+                    if (event.dataTransfer.files.length > 0) {
+                            this.files[0] = event.dataTransfer.files[0];
+                    }
+                    this.dragActive = false;
+                },
+                handleDragLeave() {
+                    this.dragActive = false;
+                },
+                handleDragOver() {
+                    this.dragActive = true;
+                },
+                handleDragEnter() {
+                    this.dragActive = true;
+                },
+                removeFile(index) {
+                    this.files.splice(index, 1);
+                },
+                openFileExplorer() {
+                    this.$refs.fileInput.value = "";
+                    this.$refs.fileInput.click();
+                },
+                handleSubmitFile() {
+                    if (this.files.length === 0) {
+                        alert("No file has been submitted");
+                    } else {
+                        submitFiles(this.files);
+                        this.files = [];
+                    }
+                },
 
             }
+        }
+        function submitFiles(files) {
+            const formData = new FormData();
+            files.forEach((file) => {
+                formData.append("files[]", file);
+            });
+            fetch("{{ url('api/v1/clients/documents?case_id='.$case->id) }}", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                },
+                body: formData,
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    alert("Files uploaded successfully");
+                    //refresh page
+                    console.log(data);
+                    location.reload();
+
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
         }
     </script>
 @endsection

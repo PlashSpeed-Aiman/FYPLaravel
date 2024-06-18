@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\Cases;
+use App\Models\Client;
 use App\Models\Invoice;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -71,5 +73,19 @@ class AdminController extends Controller
     }
     public function createClient(){
         return view('admin.client.create');
+    }
+
+    public function invoice($id, $invoice_id){
+        //check if user is admin
+        $auth = $this->auth::user();
+        $user = User::where('id', $auth->id)->first();
+        if(!$user->hasRole('admin')){
+            return redirect()->back();
+        }
+
+        $client = Client::find($id);
+        $invoice = $client->invoices->where('id', $invoice_id)->first();
+
+        return Storage::download($invoice->document_path,$invoice->document_name);
     }
 }

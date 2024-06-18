@@ -59,8 +59,9 @@ class ClientController extends Controller
 
     public function payments(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $user = $this->auth::user();
-        $client = Client::where('email', $user->email)->first();
+        $auth_user = $this->auth::user();
+        $user = User::where('id', $auth_user->id)->first();
+        $client = $user->client;
         $invoices = $client->invoices;
         return view('client.payment', compact('invoices'));
 

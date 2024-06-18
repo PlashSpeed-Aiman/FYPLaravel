@@ -16,11 +16,12 @@ class Invoice extends Model
      */
     protected $fillable = [
         'invoice_number',
-        'date',
         'amount',
         'client_id',
         'status',
         'invoice_date',
+        'document_name',
+        'document_path',
         ];
     /**
      * Get the client that owns the invoice.

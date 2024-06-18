@@ -22,6 +22,7 @@ Route::group(['middleware'=>'web','prefix' => 'v1'], function () {
     Route::group(['prefix'=>'admin'], function(){
         Route::post('/clients', [App\Http\Controllers\API\AdminController::class, 'addClient'])->name('admin.client.add');
         Route::post('/clients/{client_id}/cases', [App\Http\Controllers\API\AdminController::class, 'addCase'])->name('admin.client.case.add');
+        Route::post('/clients/{client_id}/invoices', [App\Http\Controllers\API\AdminController::class, 'addInvoice'])->name('admin.client.invoice.add');
     });
 
 });
