@@ -12,6 +12,7 @@ Route::group(['middleware'=>'web','prefix' => 'v1'], function () {
         Route::get('/', [App\Http\Controllers\API\ClientController::class, 'index']);
         Route::post('/documents', [App\Http\Controllers\API\ClientController::class, 'uploadDocument'])->name('client.document.upload');
         Route::delete('/documents/{document_id}', [App\Http\Controllers\API\ClientController::class, 'deleteDocument'])->name('client.document.delete');
+        Route::post('/invoices/{invoice_id}/payments', [App\Http\Controllers\API\ClientController::class, 'makePayment'])->name('client.invoice.payment');
     });
     // lawyer upload document
     // group into lawyers

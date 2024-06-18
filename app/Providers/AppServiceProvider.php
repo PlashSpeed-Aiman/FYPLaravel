@@ -15,6 +15,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Services\DocumentService', function ($app) {
             return new \App\Services\DocumentService();
         });
+
+        $this->app->bind('App\Services\PaymentService', function ($app) {
+            return new \App\Services\PaymentService();
+        });
     }
 
     /**
