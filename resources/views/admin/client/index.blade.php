@@ -171,7 +171,7 @@
                         },
                         body: formData
                     })
-                        .then(response => response.json())
+                        .then(response => response)
                         .then(data => {
                             console.log(data)
                             location.reload()
