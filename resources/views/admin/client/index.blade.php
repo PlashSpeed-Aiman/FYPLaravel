@@ -244,30 +244,30 @@
 
             }
         }
-        function submitFiles(files) {
-            const formData = new FormData();
-            files.forEach((file) => {
-                formData.append("files[]", file);
-            });
-            fetch("{{ url('api/v1/clients/documents?case_id='.$case->id) }}", {
-                method: "POST",
-                headers: {
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                },
-                body: formData,
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    alert("Files uploaded successfully");
-                    //refresh page
-                    console.log(data);
-                    location.reload();
+        {{--function submitFiles(files) {--}}
+        {{--    const formData = new FormData();--}}
+        {{--    files.forEach((file) => {--}}
+        {{--        formData.append("files[]", file);--}}
+        {{--    });--}}
+        {{--    fetch("{{ url('api/v1/clients/documents?case_id='.$case->id) }}", {--}}
+        {{--        method: "POST",--}}
+        {{--        headers: {--}}
+        {{--            "X-CSRF-TOKEN": "{{ csrf_token() }}",--}}
+        {{--        },--}}
+        {{--        body: formData,--}}
+        {{--    })--}}
+        {{--        .then((response) => response.json())--}}
+        {{--        .then((data) => {--}}
+        {{--            alert("Files uploaded successfully");--}}
+        {{--            //refresh page--}}
+        {{--            console.log(data);--}}
+        {{--            location.reload();--}}
 
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                });
-        }
+        {{--        })--}}
+        {{--        .catch((error) => {--}}
+        {{--            console.error("Error:", error);--}}
+        {{--        });--}}
+        {{--}--}}
     </script>
 @endsection
 
