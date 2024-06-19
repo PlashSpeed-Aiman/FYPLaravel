@@ -32,10 +32,8 @@ class LawyerController extends Controller
         $user = $this->auth::user();
         $res = User::find($user->id);
         $lawyer = Lawyer::where('user_id', $res->id)->first();
-        // get clients from the lawyerClient table
-        $lawyerClients = LawyerClient::where('lawyer_id', $lawyer->id);
         // get clients from the clients table
-        $clients = Client::whereIn('id', $lawyerClients->pluck('client_id'))->get();
+        $clients = Client::all();
 
         return view('lawyer.index', compact('clients') );
     }

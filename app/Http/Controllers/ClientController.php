@@ -32,7 +32,10 @@ class ClientController extends Controller
     }
 
     public function cases(){
-        $cases = Cases::all();
+        $auth_user = $this->auth::user();
+        $user = User::where('id', $auth_user->id)->first();
+        $client = $user->client;
+        $cases = $client->cases;
         return view('client.cases', ['cases' => $cases]);
     }
 
