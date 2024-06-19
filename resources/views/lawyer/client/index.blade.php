@@ -8,7 +8,7 @@
                 @include('lawyer.user_dropdown')
             </div>
             <section>
-                <h1 class="text-xl font-bold mx-10">Client</h1>
+                <h1 class="text-xl font-bold mx-10">Clients</h1>
 {{--            two tabs, cases, and invoice using hypermedia   --}}
                 <section class="mx-5 ">
                     <div class="collapse bg-base-200 my-2">
@@ -58,25 +58,23 @@
                                     <th>No.</th>
                                     <th>Invoice Name</th>
                                     <th>Amount</th>
-                                    <th>Due Date</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
-{{--                                @if($invoices->isEmpty())--}}
-{{--                                    <tr>--}}
-{{--                                        <td colspan="4">No invoices found</td>--}}
-{{--                                    </tr>--}}
-{{--                                @else--}}
-{{--                                @foreach($invoices as $invoice)--}}
-{{--                                    <tr>--}}
-{{--                                        <td><a class="text-blue-600 hover:underline " href="{{url('lawyer/invoices/'.$invoice->id)}}">{{ $invoice->id }}</a></td>--}}
-{{--                                        <td>{{ $invoice->name }}</td>--}}
-{{--                                        <td>{{ $invoice->amount }}</td>--}}
-{{--                                        <td>{{ $invoice->due_date }}</td>--}}
-{{--                                    </tr>--}}
-{{--                                @endforeach--}}
-{{--                                @endif--}}
+                                @if($invoices->isEmpty())
+                                    <tr>
+                                        <td colspan="4">No invoices found</td>
+                                    </tr>
+                                @else
+                                @foreach($invoices as $invoice)
+                                    <tr>
+                                        <td><a class="text-blue-600 hover:underline " href="#">{{ $loop->index + 1  }}</a></td>
+                                        <td>{{ $invoice->invoice_number }}</td>
+                                        <td>{{ $invoice->amount }}</td>
+                                    </tr>
+                                @endforeach
+                                @endif
                                 </tbody>
                             </table>
                         </div>

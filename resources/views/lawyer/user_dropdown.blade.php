@@ -5,7 +5,7 @@
          alt="hero"
     />
     <ul tabindex="0" class="mx-10 mt-2 dropdown-content z-[1] menu  shadow bg-base-100 rounded-box w-48">
-        <li><a href="{{ url('lawyer/settings') }}">Settings</a></li>
+{{--        <li><a href="{{ url('lawyer/settings') }}">Settings</a></li>--}}
         <li><a href="{{ url('logout') }}">Logout</a></li>
     </ul>
 </div>

@@ -42,9 +42,10 @@ class LawyerController extends Controller
     {
         $user = $this->auth::user();
         $res = User::find($user->id);
-        $lawyer = LawyerCase::where('lawyer_id', $res->lawyer->id)->get();
-        $cases = Cases::whereIn('id', $lawyer->pluck('case_id'))->get();
-        return view('lawyer.client.index', ['id' => $id, 'cases' => $cases]);
+        $client = Client::find($id);
+        $cases = $client->cases;
+        $invoices = $client->invoices;
+        return view('lawyer.client.index', ['id' => $id, 'cases' => $cases, 'invoices' => $invoices]);
     }
 
     public function settings()
@@ -63,9 +64,8 @@ class LawyerController extends Controller
         $user = $this->auth::user();
         $res = User::find($user->id);
         //get lawyer then get the client, and get a specific case
-        $lawyer = Lawyer::where('user_id', $res->id)->first();
-        $lawyerClient = LawyerClient::where('lawyer_id', $lawyer->id)->where('client_id', $id)->first();
-        $case = Client::find($lawyerClient->client_id)->cases()->where('id', $case_id)->first();
+        $client = Client::find($id);
+        $case = $client->cases->where('id', $case_id)->first();
         $documents = $case->documents;
         if(!$documents)
             $documents = [];
